@@ -20,6 +20,14 @@ describe("Gilded Rose", function() {
     expect(items[0].quality).not.to.be.undefined;
   });
 
+  it("should have a quality property with more than 1 item", function() {
+    const gildedRose = new Shop([ new Item("foo", 0, 4), new Item("foo2", 0, 4) ]);
+    let items = gildedRose.updateQuality();
+    expect(items[0].quality).not.to.be.undefined;
+    items = gildedRose.updateQuality();
+    expect(items[1].quality).not.to.be.undefined;
+  });
+
   it("should lowers both values", function() {
     const INITIAL_SELLIN = 2;
     const INITIAL_QUALITY = 2;
@@ -108,7 +116,7 @@ describe("Gilded Rose", function() {
     expect(items[0].quality === INITIAL_QUALITY + 3).to.be.true;
   });
 
-  it.only("Backstage passes should increase in Quality as its SellIn value approaches - drops to zero", function() {
+  it("Backstage passes should increase in Quality as its SellIn value approaches - drops to zero", function() {
     const INITIAL_QUALITY = 10;
     const INITIAL_SELLIN = 1;
     const gildedRose = new Shop([ new Item("Backstage passes to a TAFKAL80ETC concert", INITIAL_SELLIN, INITIAL_QUALITY) ]);
